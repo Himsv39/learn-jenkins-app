@@ -19,12 +19,18 @@ pipeline {
                     npm ci
                     echo 'Started with the build process..'
                     npm run build
+                    ls -la
                 '''
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing...'
+                echo 'Running Test Cses...'
+                sh '''
+                   test -f package.json && echo 'File exists' || echo 'File does not exist'
+                   test -f build/index.html && echo 'Index.html File exists' || echo 'Index.html File does not exist'
+                   npm run test a
+                '''
             }
         }
         stage('Deploy') {
