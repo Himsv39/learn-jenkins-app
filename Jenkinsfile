@@ -24,11 +24,17 @@ pipeline {
             }
         }
         stage('Test') {
+            docker {
+                image 'node:18'
+                reuseNode true
+            }
             steps {
                 echo 'Running Test Cses...'
                 sh '''
                    test -f package.json && echo 'File exists' || echo 'File does not exist'
                    test -f build/index.html && echo 'Index.html File exists' || echo 'Index.html File does not exist'
+                   node -version
+                   npm --version
                    npm test a
                 '''
             }
