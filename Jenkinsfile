@@ -15,6 +15,7 @@ pipeline {
                     ls -la
                     node --version
                     npm --version
+                    npm ci
                     echo 'Started with the build process..'
                     echo 'Installing dependencies..'
                     npm install
