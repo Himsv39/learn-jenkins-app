@@ -24,9 +24,11 @@ pipeline {
             }
         }
         stage('Test') {
-            docker {
-                image 'node:18'
-                reuseNode true
+            agent{
+                docker {
+                    image 'node:18'
+                    reuseNode true
+                }
             }
             steps {
                 echo 'Running Test Cses...'
