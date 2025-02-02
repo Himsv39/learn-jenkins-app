@@ -29,7 +29,7 @@ pipeline {
                 sh '''
                    test -f package.json && echo 'File exists' || echo 'File does not exist'
                    test -f build/index.html && echo 'Index.html File exists' || echo 'Index.html File does not exist'
-                   npm run test a
+                   npm test a
                 '''
             }
         }
