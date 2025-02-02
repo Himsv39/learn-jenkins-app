@@ -15,10 +15,10 @@ pipeline {
                     ls -la
                     node --version
                     npm --version
+                    echo 'Initialising the project..'
                     npm ci
                     echo 'Started with the build process..'
-                    echo 'Installing dependencies..'
-                    npm install
+                    npm run build
                 '''
             }
         }
