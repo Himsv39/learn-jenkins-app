@@ -86,7 +86,7 @@ pipeline {
                     netlify --version
                     netlify status
                     netlify deploy --dir=build --json > deploy-output.json
-                    node-jq -r '.deploy_url' deploy-output.json
+                    jq -r '.deploy_url' deploy-output.json
                 '''
             }
         }        
@@ -110,15 +110,9 @@ pipeline {
                     netlify --version
                     netlify status
                     netlify deploy --dir=build --prod --json > deploy-output.json
-                    node-jq -r '.deploy_url' deploy-output.json
+                    jq -r '.deploy_url' deploy-output.json
                 '''
             }
-        }
-    }
-
-    post{
-        always{
-            junit 'jest-results/junit.xml'
         }
     }
 }
