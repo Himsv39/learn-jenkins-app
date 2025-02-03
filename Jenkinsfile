@@ -72,9 +72,8 @@ pipeline {
             steps {
                 sh'''
                     echo 'Deploying the project..'
-                    // Install Netlify CLI as a dev dependency
                     npm install netlify-cli 
-                    mode_modules/.bin/netlify --version
+                    node_modules/.bin/netlify --version
                 '''
             }
         }
