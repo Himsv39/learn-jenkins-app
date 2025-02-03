@@ -50,7 +50,7 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: '92b2ccb3-56a0-4ed2-955c-39128e3046a0', passwordVariable: 'AWS_SECRET_ACCESS_KEY', usernameVariable: 'AWS_ACCESS_KEY_ID')]) {
                     sh '''
                         aws --version
-                        aws s3 cp build s3://${AWS_S3_BUCKET_URI}    
+                        aws s3 sync build s3://${AWS_S3_BUCKET_URI}    
                     '''
                 }                
             }
