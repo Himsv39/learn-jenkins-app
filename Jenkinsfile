@@ -23,7 +23,7 @@ pipeline {
                     echo 'Started with the build process..'
                     npm run build
                     ls -la
-                    echo 'small change
+                    echo 'small change'
                 '''
             }
         }
