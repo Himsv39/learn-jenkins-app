@@ -77,18 +77,17 @@ pipeline {
         stage('Deploy Staging') {
             agent{
                 docker{
-                    image 'node:18'
+                    image 'my-node-app'
                     reuseNode true
                 }
             }
             steps {
                 sh'''
                     echo "Deploying the project to Staging.. Site ID: ${NETLIFY_SITE_ID}"
-                    npm install netlify-cli node-jq
-                    node_modules/.bin/netlify --version
-                    node_modules/.bin/netlify status
-                    node_modules/.bin/netlify deploy --dir=build --json > deploy-output.json
-                    node_modules/.bin/node-jq -r '.deploy_url' deploy-output.json
+                    netlify --version
+                    netlify status
+                    netlify deploy --dir=build --json > deploy-output.json
+                    node-jq -r '.deploy_url' deploy-output.json
                 '''
             }
         }        
@@ -102,18 +101,17 @@ pipeline {
         stage('Deploy Prod') {
             agent{
                 docker{
-                    image 'node:18'
+                    image 'my-node-app'
                     reuseNode true
                 }
             }
             steps {
                 sh'''
                     echo "Deploying the project to Production.. Site ID: ${NETLIFY_SITE_ID}"
-                    npm install netlify-cli node-jq
-                    node_modules/.bin/netlify --version
-                    node_modules/.bin/netlify status
-                    node_modules/.bin/netlify deploy --dir=build --prod --json > deploy-output.json
-                    node_modules/.bin/node-jq -r '.deploy_url' deploy-output.json
+                    netlify --version
+                    netlify status
+                    netlify deploy --dir=build --prod --json > deploy-output.json
+                    node-jq -r '.deploy_url' deploy-output.json
                 '''
             }
         }
