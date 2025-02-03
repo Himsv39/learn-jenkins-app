@@ -13,6 +13,19 @@ pipeline {
                 }
             }
         }
+        stage('AWS'){
+            agent {
+                docker{
+                    image 'amazon/aws-cli:latest'
+                    args "--entrypoint=''"
+                }
+            }
+            steps{
+                sh '''
+                  aws --version
+                '''
+            }
+        }
         stage('Build') {
             agent{
                 docker{
